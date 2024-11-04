@@ -4,7 +4,7 @@
 using namespace std;
 
 // write a function to print the contents of your array
-//   bonus! try to implement your function so that it can accept
+//   bonus (+5% to your grade for this lab)! try to implement your function so that it can accept
 //     many types of data (int, char, string, etc.)
 template <typename flexibleType> // ???
 void printArray(...) {}
