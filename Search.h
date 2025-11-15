@@ -35,17 +35,17 @@ return false;}
 bool binSearch(float target, float arr[], int n) {
     int start = 0,  mid;
     int end = n - 1; 
-    bool isfound = false;
+    bool isfound = false; // initialize value 
 
     while(start <= end){
      mid = start + (end - start)/2;
-    if(arr[mid] == target){
+    if(arr[mid] == target){ //compares target, if found it "breaks" the loop early 
         isfound = true; 
         break; 
-    } else if (target > arr[mid]){
+    } else if (target > arr[mid]){ //shifts search to the right 
         start = mid + 1;
     } else {
-        end = mid - 1; 
+        end = mid - 1; //shifts search to the left 
     }
     
     }
@@ -110,9 +110,12 @@ return the_smallest;
 
 void newSort(double darray[], int n) {
 
-int small = minFind(darray, n);
-swap(darray, 0, small);
-if()
+    if(n <= 1){return;} //base case 
+    int small = minFind(darray, n); // gets the smallest value
+
+    swap(darray, 0, small); //does the swaping wiht the smallest value starting at index 0 
+    
+    newSort(darray + 1, n - 1); // recursion call starts the array the next index every time and makes it smaller with n
 
 }
 
@@ -130,5 +133,23 @@ if()
 //         You may pass a pointer to the start of the window and its length,
 //         or copy that window to a temporary buffer if you prefer.
 bool expSearch(float target, float arr[], int n) {
-    return false;
+
+    if( n == 0){return false;} //in case there is nothing in the array to search 
+    if (arr[0] == target){return true;} // in case the target is found at the start, best case 
+    bool found; 
+    int right, left, bound = 1; // initalize my bound 
+
+
+    while(bound < n && arr[bound] < target){ // double condition, as long ass bound is smaller than the size and if the target is within the bound then it stops
+        bound = bound * 2; //exponetial growth of bound
+    }
+    // I felt the explination for the bound was kind of weirdly worded 
+        left = bound / 2; // left bound
+        if(bound < n){ // right bound 
+        right = bound;
+        }else{
+        right = n - 1; // if the bound is too big we make the last index the upper or right bound 
+}        
+    found = binSearch(target, arr + left, right - left + 1); // calling the binSearch, we shift the start if the arr to where the left bound starts and then adjust the size so it only goes to the right bound
+    return found;
 }
