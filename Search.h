@@ -57,11 +57,17 @@ bool binSearch(float target, float arr[], int n) {
 // Return true if target exists in the array with size n
 //   return false otherwise
 bool binSearchR(char target, char charray[], int n) {
-    if(target == charr[n]){return true;}// base case
+   if(n <= 0){return false;} //  base case 
+   int mid = n/2; // turnicates numbers down when size "n" is odd
+    if(target == charray[mid]){ //stops it right away if target is found best case 
+        return true;
+    }else if (target > charray[mid]){
+        //note for self n = size 
+        return binSearchR(target, charray+mid+1, n-mid-1); // move the array pointer after the mid and change the size (n) to be smaller 
+    } else {
+        return binSearchR(target, charray, mid); // the array already starts at the beginning just chnage the size (n) to be mid
+    }
 
-    mid = start + (end - start)/2;//general case
-
-    return false;
 }
 
 // Implement a brand new sorting algorithm
@@ -85,13 +91,30 @@ Step 3: Finally, use your two functions above to complete the following in newSo
         *** You can make this recursive, if you wish!
 */
 
-void swap(double darray[], ...) {}
-
-int minFind(double darray[], ...) {
-    return -1;
+void swap(double darray[], int a, int b) {
+    double temp = darray[a]; 
+    darray[a] = darray[b];
+    darray[b] = temp;
 }
 
-void newSort(double darray[], int n) {}
+int minFind(double darray[], int size) {
+    int the_smallest = 0; // initialize target index 
+    for(int i = 0; i < size; i++){ //searching the array with loop 
+       if(darray[i] <= darray[the_smallest]){ //compares the current index to the smallest so far starting with the first index first. 
+        the_smallest = i; //updates the value of the index to reflect the smallest one so far
+       
+    }
+}
+return the_smallest;
+}
+
+void newSort(double darray[], int n) {
+
+int small = minFind(darray, n);
+swap(darray, 0, small);
+if()
+
+}
 
 
 // Implement Exponential Search
